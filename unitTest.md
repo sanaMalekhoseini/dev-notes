@@ -32,6 +32,7 @@ Edit
 
 ],
 ✅ و حالا .env اینطوری باشه:
+و حالا .env اینطوری باشه:
 env
 Copy
 Edit
@@ -43,3 +44,23 @@ DB_USERNAME=root
 DB_PASSWORD=password
 
 DB_DATABASE_TEST=unitTest
+
+
+تست اجرای migrate برای دیتابیس تست:
+bash
+Copy
+Edit
+docker-compose exec app php artisan migrate --database=unitTest
+ همزمان تست‌ها هم کار می‌کنن:
+bash
+Copy
+Edit
+docker-compose exec app php artisan test
+ حالت ۲: اجرای مایگریشن روی چند دیتابیس در محیط معمولی (غیر تستی)
+می‌تونی دستی یا در یک اسکریپت CI، مایگریشن‌ها رو به شکل زیر اجرا کنی:
+
+bash
+Copy
+Edit
+php artisan migrate --database=pgsql
+php artisan migrate --database=pgsql_test
